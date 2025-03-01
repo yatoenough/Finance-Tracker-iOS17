@@ -20,12 +20,13 @@ struct OverviewScreen: View {
         .navigationTitle("Overview")
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: {}) {
+                NavigationLink(destination: Text("Test")) {
                     Image(systemName: "plus")
                 }
             }
         }
     }
+    
 }
 
 #Preview {
