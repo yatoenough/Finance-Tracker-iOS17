@@ -15,20 +15,35 @@ struct OverviewScreen: View {
     
     var body: some View {
         ScrollView {
-            VStack {
-                AmountBlock(title: "Current balance", amount: balanceViewModel.balance)
-                AmountBlock(title: "Income", amount: balanceViewModel.income)
-                AmountBlock(title: "Expenses", amount: balanceViewModel.expenses)
+            VStack(spacing: 15) {
+                VStack {
+                    AmountBlock(title: "Current balance", amount: balanceViewModel.balance)
+                    AmountBlock(title: "Income", amount: balanceViewModel.income)
+                    AmountBlock(title: "Expenses", amount: balanceViewModel.expenses)
+                }
+                
+                VStack() {
+                    HStack {
+                        Text("Transactions")
+                            .font(.title)
+                            .bold()
+                        
+                        Spacer()
+                    }
+                    
+                    ForEach(transactions.prefix(5), id: \.id) { transaction in
+                        TransactionItem(transaction: transaction)
+                    }
+                }
             }
-            .padding()
+            
         }
-        .onChange(of: transactions) { _, _ in
-            print(transactions)
-        }
+        .padding()
         .navigationTitle("Overview")
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 NavigationLink(destination: AddTransactionForm()) {
+                    Text("Transaction")
                     Image(systemName: "plus")
                 }
             }

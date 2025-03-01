@@ -8,11 +8,17 @@
 import SwiftUI
 import SwiftData
 
+enum TransactionType: String, CaseIterable {
+    case income
+    case expense
+}
+
 struct AddTransactionForm: View {
     
     @State private var title: String = ""
     @State private var amountString: String = ""
     @State private var date: Date = .now
+    @State private var type: TransactionType = .income
     
     @Environment(TransactionsViewModel.self) private var transactionsViewModel
     @Environment(\.dismiss) private var dismiss
@@ -27,6 +33,15 @@ struct AddTransactionForm: View {
                 TextField("Title", text: $title)
                 TextField("Amount", text: $amountString)
                     .keyboardType(.decimalPad)
+                
+                Picker("Transaction Type", selection: $type) {
+                    ForEach(TransactionType.allCases, id: \.rawValue) { type in
+                        Text(type.rawValue.capitalized)
+                            .tag(type)
+                    }
+                }
+                .pickerStyle(.segmented)
+                
             }
             
             Section("Transaction date") {
@@ -35,7 +50,14 @@ struct AddTransactionForm: View {
             
             Section {
                 Button("Add") {
-                    let transaction = TransactionModel(title: title, amount: Double(amountString) ?? 0, date: date)
+                    var parsedAmount = Double(amountString) ?? 0
+                    
+                    if type == .expense {
+                        parsedAmount *= -1
+                    }
+                    
+                    let transaction = TransactionModel(title: title, amount: parsedAmount, date: date)
+                    
                     transactionsViewModel.addTransaction(transaction)
                     dismiss()
                 }
@@ -48,7 +70,7 @@ struct AddTransactionForm: View {
 
 #Preview {
     let modelContainer = try! ModelContainer(for: TransactionModel.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
-
+    
     
     NavigationStack {
         AddTransactionForm()
