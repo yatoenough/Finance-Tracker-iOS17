@@ -17,8 +17,14 @@ struct OverviewScreen: View {
             }
             .padding()
         }
-        
         .navigationTitle("Overview")
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: {}) {
+                    Image(systemName: "plus")
+                }
+            }
+        }
     }
 }
 
