@@ -30,5 +30,6 @@ struct Finance_TrackerApp: App {
             }
         }
         .modelContainer(sharedModelContainer)
+        .environment(TransactionsViewModel(modelContext: ModelContext(sharedModelContainer)))
     }
 }

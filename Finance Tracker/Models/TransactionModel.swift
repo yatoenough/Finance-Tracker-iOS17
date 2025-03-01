@@ -16,7 +16,7 @@ class TransactionModel {
     var amount: Double
     var date: Date
     
-    init(title: String, amount: Double, date: Date, color: Color) {
+    init(title: String, amount: Double, date: Date) {
         self.title = title
         self.amount = amount
         self.date = date
