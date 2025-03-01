@@ -11,28 +11,14 @@ import SwiftData
 struct OverviewScreen: View {
     @Query private var transactions: [TransactionModel]
     
-    private var incomeTransactions: [TransactionModel] {
-        transactions.filter({ $0.amount > 0 })
-    }
-    
-    private var expenseTransactions: [TransactionModel] {
-        transactions.filter({ $0.amount < 0 })
-    }
-    
-    private var income: Double {
-        incomeTransactions.reduce(0) { $0 + $1.amount }
-    }
-    
-    private var expenses: Double {
-        expenseTransactions.reduce(0) { $0 + abs($1.amount) }
-    }
+    private var balanceViewModel: BalanceViewModel { .init(transactions: transactions) }
     
     var body: some View {
         ScrollView {
             VStack {
-                AmountBlock(title: "Current balance", amount: income - expenses)
-                AmountBlock(title: "Income", amount: income)
-                AmountBlock(title: "Expenses", amount: expenses)
+                AmountBlock(title: "Current balance", amount: balanceViewModel.balance)
+                AmountBlock(title: "Income", amount: balanceViewModel.income)
+                AmountBlock(title: "Expenses", amount: balanceViewModel.expenses)
             }
             .padding()
         }
