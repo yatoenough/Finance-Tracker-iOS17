@@ -29,20 +29,42 @@
 		74C7F6BF2D731A4D008F68AD /* Finance TrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Finance TrackerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		74C7F6DA2D731BC6008F68AD /* Exceptions for "Finance Tracker" folder in "Finance Tracker" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Tests/UI/Finance_TrackerUITests.swift,
+				Tests/UI/Finance_TrackerUITestsLaunchTests.swift,
+				Tests/Unit/Finance_TrackerTests.swift,
+			);
+			target = 74C7F6A22D731A4C008F68AD /* Finance Tracker */;
+		};
+		74C7F6DB2D731BC6008F68AD /* Exceptions for "Finance Tracker" folder in "Finance TrackerTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Tests/Unit/Finance_TrackerTests.swift,
+			);
+			target = 74C7F6B42D731A4D008F68AD /* Finance TrackerTests */;
+		};
+		74C7F6DC2D731BC9008F68AD /* Exceptions for "Finance Tracker" folder in "Finance TrackerUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Tests/UI/Finance_TrackerUITests.swift,
+				Tests/UI/Finance_TrackerUITestsLaunchTests.swift,
+			);
+			target = 74C7F6BE2D731A4D008F68AD /* Finance TrackerUITests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		74C7F6A52D731A4C008F68AD /* Finance Tracker */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				74C7F6DA2D731BC6008F68AD /* Exceptions for "Finance Tracker" folder in "Finance Tracker" target */,
+				74C7F6DB2D731BC6008F68AD /* Exceptions for "Finance Tracker" folder in "Finance TrackerTests" target */,
+				74C7F6DC2D731BC9008F68AD /* Exceptions for "Finance Tracker" folder in "Finance TrackerUITests" target */,
+			);
 			path = "Finance Tracker";
-			sourceTree = "<group>";
-		};
-		74C7F6B82D731A4D008F68AD /* Finance TrackerTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Finance TrackerTests";
-			sourceTree = "<group>";
-		};
-		74C7F6C22D731A4D008F68AD /* Finance TrackerUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Finance TrackerUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -76,8 +98,6 @@
 			isa = PBXGroup;
 			children = (
 				74C7F6A52D731A4C008F68AD /* Finance Tracker */,
-				74C7F6B82D731A4D008F68AD /* Finance TrackerTests */,
-				74C7F6C22D731A4D008F68AD /* Finance TrackerUITests */,
 				74C7F6A42D731A4C008F68AD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -130,9 +150,6 @@
 			dependencies = (
 				74C7F6B72D731A4D008F68AD /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				74C7F6B82D731A4D008F68AD /* Finance TrackerTests */,
-			);
 			name = "Finance TrackerTests";
 			packageProductDependencies = (
 			);
@@ -152,9 +169,6 @@
 			);
 			dependencies = (
 				74C7F6C12D731A4D008F68AD /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				74C7F6C22D731A4D008F68AD /* Finance TrackerUITests */,
 			);
 			name = "Finance TrackerUITests";
 			packageProductDependencies = (
@@ -329,6 +343,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = "";
 			};
 			name = Debug;
 		};
@@ -384,6 +399,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -395,15 +411,17 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Finance Tracker/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Finance Tracker/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = B4CWAXWYU2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -411,6 +429,10 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yatoenough.Finance-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -424,15 +446,17 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Finance Tracker/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Finance Tracker/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = B4CWAXWYU2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -440,6 +464,10 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yatoenough.Finance-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -454,7 +482,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B4CWAXWYU2;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yatoenough.Finance-TrackerTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -473,7 +501,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B4CWAXWYU2;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yatoenough.Finance-TrackerTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -491,6 +519,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B4CWAXWYU2;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yatoenough.Finance-TrackerUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -508,6 +537,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B4CWAXWYU2;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yatoenough.Finance-TrackerUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";

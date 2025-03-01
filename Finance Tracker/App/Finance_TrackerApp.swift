@@ -25,7 +25,9 @@ struct Finance_TrackerApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack {
+                ContentView()
+            }
         }
         .modelContainer(sharedModelContainer)
     }
