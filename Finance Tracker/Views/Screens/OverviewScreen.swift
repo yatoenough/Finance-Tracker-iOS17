@@ -39,14 +39,6 @@ struct OverviewScreen: View {
             .padding()
         }
         .navigationTitle("Overview")
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                NavigationLink(destination: AddTransactionForm()) {
-                    Text("Transaction")
-                    Image(systemName: "plus")
-                }
-            }
-        }
     }
     
 }

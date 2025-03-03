@@ -31,7 +31,16 @@ struct TransactionsScreen: View {
             .padding()
         }
         .navigationTitle("Transactions")
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                NavigationLink(destination: AddTransactionForm()) {
+                    Text("Transaction")
+                    Image(systemName: "plus")
+                }
+            }
+        }
     }
+    
 }
 
 #Preview {
