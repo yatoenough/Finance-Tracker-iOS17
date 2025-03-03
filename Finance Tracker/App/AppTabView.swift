@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 enum AppTab {
     case overview
@@ -38,5 +39,11 @@ struct AppTabView: View {
 }
 
 #Preview {
-    AppTabView()
+    let modelContainer = try! ModelContainer(for: TransactionModel.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
+    
+    NavigationStack {
+        AppTabView()
+    }
+    .modelContainer(modelContainer)
+    .environment(TransactionsViewModel(modelContext: ModelContext(modelContainer)))
 }
