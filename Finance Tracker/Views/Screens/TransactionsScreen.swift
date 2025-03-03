@@ -26,8 +26,20 @@ struct TransactionsScreen: View {
             ForEach(searchResults, id: \.id) { transaction in
                 TransactionItem(transaction: transaction)
                     .transition(.opacity)
+                    .swipeActions(edge: .trailing) {
+                        Button (role: .destructive){
+                            deleteTransaction(transaction)
+                        } label: {
+                            Label("Delete", systemImage: "trash")
+                        }
+                        
+                        Button {
+                            print("edit")
+                        } label: {
+                            Label("Edit", systemImage: "pencil")
+                        }
+                    }
             }
-            .onDelete(perform: deleteTransactions)
         }
         .listStyle(.plain)
         .searchable(text: $searchText)
@@ -45,11 +57,8 @@ struct TransactionsScreen: View {
         }
     }
     
-    private func deleteTransactions(at offsets: IndexSet) {
-        for offset in offsets {
-            let id = transactions[offset].id
-            transactionsViewModel.deleteTransaction(id)
-        }
+    private func deleteTransaction(_ transaction: TransactionModel) {
+        transactionsViewModel.deleteTransaction(transaction.id)
     }
     
 }
