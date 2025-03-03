@@ -22,7 +22,7 @@ struct AppTabView: View {
             }
             .tag(AppTab.overview)
             .tabItem {
-                Label("Overview", systemImage: "house.fill")
+                Label("Overview", image: "NavOverview")
             }
             
             NavigationStack {
@@ -30,7 +30,7 @@ struct AppTabView: View {
             }
             .tag(AppTab.transactions)
             .tabItem {
-                Label("Transactions", systemImage: "dollarsign")
+                Label("Transactions", image: "NavTransactions")
             }
             
         }
