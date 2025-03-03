@@ -36,9 +36,8 @@ struct OverviewScreen: View {
                     }
                 }
             }
-            
+            .padding()
         }
-        .padding()
         .navigationTitle("Overview")
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
