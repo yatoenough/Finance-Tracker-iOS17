@@ -11,6 +11,8 @@ import SwiftData
 struct TransactionsScreen: View {
     @State private var searchText: String = ""
     
+    @Environment(TransactionsViewModel.self) private var transactionsViewModel
+    
     @Query private var transactions: [TransactionModel]
     
     var searchResults: [TransactionModel] {
@@ -20,16 +22,15 @@ struct TransactionsScreen: View {
     }
     
     var body: some View {
-        ScrollView {
-            VStack {
-                ForEach(searchResults, id: \.id) { transaction in
-                    TransactionItem(transaction: transaction)
-                        .transition(.opacity)
-                }
+        List {
+            ForEach(searchResults, id: \.id) { transaction in
+                TransactionItem(transaction: transaction)
+                    .transition(.opacity)
             }
-            .searchable(text: $searchText)
-            .padding()
+            .onDelete(perform: deleteTransactions)
         }
+        .listStyle(.plain)
+        .searchable(text: $searchText)
         .navigationTitle("Transactions")
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -38,6 +39,16 @@ struct TransactionsScreen: View {
                     Image(systemName: "plus")
                 }
             }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                EditButton()
+            }
+        }
+    }
+    
+    private func deleteTransactions(at offsets: IndexSet) {
+        for offset in offsets {
+            let id = transactions[offset].id
+            transactionsViewModel.deleteTransaction(id)
         }
     }
     
@@ -50,5 +61,5 @@ struct TransactionsScreen: View {
         TransactionsScreen()
     }
     .modelContainer(modelContainer)
-    .environment(TransactionsViewModel(modelContext: ModelContext(modelContainer)))
+    .environment(TransactionsViewModel(modelContext: modelContainer.mainContext))
 }

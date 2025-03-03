@@ -28,6 +28,6 @@ struct Finance_TrackerApp: App {
             AppTabView()
         }
         .modelContainer(sharedModelContainer)
-        .environment(TransactionsViewModel(modelContext: ModelContext(sharedModelContainer)))
+        .environment(TransactionsViewModel(modelContext: sharedModelContainer.mainContext))
     }
 }
