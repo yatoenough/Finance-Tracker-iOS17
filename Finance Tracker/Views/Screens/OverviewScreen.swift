@@ -44,11 +44,9 @@ struct OverviewScreen: View {
 }
 
 #Preview {
-    let modelContainer = try! ModelContainer(for: TransactionModel.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
-    
-    NavigationStack {
-        OverviewScreen()
+    DataPreview {
+        NavigationStack {
+            OverviewScreen()
+        }
     }
-    .modelContainer(modelContainer)
-    .environment(TransactionsViewModel(modelContext: ModelContext(modelContainer)))
 }

@@ -29,15 +29,13 @@ struct AppTabView: View {
             } label: {
                 Label("Transactions", image: "NavTransactions")
             }
-
+            
         }
     }
 }
 
 #Preview {
-    let modelContainer = try! ModelContainer(for: TransactionModel.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
-    
-    AppTabView()
-        .modelContainer(modelContainer)
-        .environment(TransactionsViewModel(modelContext: ModelContext(modelContainer)))
+    DataPreview {
+        AppTabView()
+    }
 }

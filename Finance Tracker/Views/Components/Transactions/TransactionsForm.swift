@@ -83,12 +83,9 @@ struct TransactionsForm: View {
 }
 
 #Preview {
-    let modelContainer = try! ModelContainer(for: TransactionModel.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
-    
-    
-    NavigationStack {
-        TransactionsForm()
+    DataPreview {
+        NavigationStack {
+            TransactionsForm()
+        }
     }
-    .modelContainer(modelContainer)
-    .environment(TransactionsViewModel(modelContext: ModelContext(modelContainer)))
 }

@@ -46,21 +46,12 @@ struct TransactionsList: View {
     }
 }
 
+#warning("Fix this preview")
+
 #Preview {
-    let modelContainer = try! ModelContainer(for: TransactionModel.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
-    
-    let transactions: [TransactionModel] = [
-        TransactionModel(title: "Test Transaction 1", amount: 100.0, date: Date()),
-        TransactionModel(title: "Test Transaction 2", amount: -50.0, date: Date(timeIntervalSinceNow: -60)),
-    ]
-    
-    for transaction in transactions {
-        modelContainer.mainContext.insert(transaction)
+    DataPreview {
+        NavigationStack {
+            TransactionsList(transactions: [])
+        }
     }
-    
-    return NavigationStack {
-        TransactionsList(transactions: transactions)
-    }
-    .modelContainer(modelContainer)
-    .environment(TransactionsViewModel(modelContext: modelContainer.mainContext))
 }

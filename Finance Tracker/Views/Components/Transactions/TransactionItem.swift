@@ -43,6 +43,6 @@ struct TransactionItem: View {
     }
 }
 
-#Preview {
+#Preview(traits: .sizeThatFitsLayout) {
     TransactionItem(transaction: TransactionModel(title: "Demo", amount: 200, date: .now))
 }
