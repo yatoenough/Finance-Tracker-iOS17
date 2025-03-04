@@ -11,8 +11,6 @@ import SwiftData
 struct TransactionsScreen: View {
     @State private var searchText: String = ""
     
-    @Environment(TransactionsViewModel.self) private var transactionsViewModel
-    
     @Query private var transactions: [TransactionModel]
     
     var searchResults: [TransactionModel] {
@@ -24,47 +22,19 @@ struct TransactionsScreen: View {
     }
     
     var body: some View {
-        List {
-            ForEach(searchResults, id: \.id) { transaction in
-                TransactionItem(transaction: transaction)
-                    .transition(.opacity)
-                    .swipeActions(edge: .trailing) {
-                        Button(role: .destructive) {
-                            deleteTransaction(transaction)
-                        } label: {
-                            Label("Delete", systemImage: "trash")
-                        }
+        TransactionsList(transactions: searchResults)
+            .searchable(text: $searchText)
+            .navigationTitle("Transactions")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink(destination: TransactionsForm()) {
+                        Image(systemName: "plus")
                     }
-                    .swipeActions(edge: .leading) {
-                        NavigationLink(destination: EditTransactionForm(transaction: transaction)) {
-                            Label("Edit", systemImage: "pencil")
-                                .tint(.orange)
-                        }
-                    }
-            }
-            .onDelete { offsets in
-                for offset in offsets {
-                    deleteTransaction(searchResults[offset])
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    EditButton()
                 }
             }
-        }
-        .listStyle(.plain)
-        .searchable(text: $searchText)
-        .navigationTitle("Transactions")
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                NavigationLink(destination: AddTransactionForm()) {
-                    Image(systemName: "plus")
-                }
-            }
-            ToolbarItem(placement: .navigationBarTrailing) {
-                EditButton()
-            }
-        }
-    }
-    
-    private func deleteTransaction(_ transaction: TransactionModel) {
-        transactionsViewModel.deleteTransaction(transaction.id)
     }
     
 }

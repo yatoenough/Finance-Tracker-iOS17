@@ -1,5 +1,5 @@
 //
-//  AddTransactionForm.swift
+//  TransactionsForm.swift
 //  Finance Tracker
 //
 //  Created by Nikita Shyshkin on 01/03/2025.
@@ -8,7 +8,12 @@
 import SwiftUI
 import SwiftData
 
-struct AddTransactionForm: View {
+struct TransactionsForm: View {
+    let transactionToEdit: TransactionModel?
+    
+    init(transactionToEdit: TransactionModel? = nil) {
+        self.transactionToEdit = transactionToEdit
+    }
     
     @State private var title: String = ""
     @State private var amountString: String = ""
@@ -44,7 +49,7 @@ struct AddTransactionForm: View {
             }
             
             Section {
-                Button("Add") {
+                Button(transactionToEdit == nil ? "Add" : "Edit") {
                     var parsedAmount = Double(amountString) ?? 0
                     
                     if type == .expense {
@@ -53,13 +58,27 @@ struct AddTransactionForm: View {
                     
                     let transaction = TransactionModel(title: title, amount: parsedAmount, date: date)
                     
+                    if let transactionToEdit {
+                        transactionsViewModel.editTransaction(transactionToEdit.id, transaction)
+                        dismiss()
+                        return
+                    }
+                    
                     transactionsViewModel.addTransaction(transaction)
                     dismiss()
                 }
             }
             .disabled(isDisabled)
         }
-        .navigationTitle("Add Transaction")
+        .navigationTitle(transactionToEdit == nil ? "Add Transaction" : "Edit Transaction")
+        .onAppear {
+            if let transactionToEdit {
+                title = transactionToEdit.title
+                amountString = String(format: "%.2f", abs(transactionToEdit.amount))
+                date = transactionToEdit.date
+                type = transactionToEdit.amount > 0 ? .income : .expense
+            }
+        }
     }
 }
 
@@ -68,7 +87,7 @@ struct AddTransactionForm: View {
     
     
     NavigationStack {
-        AddTransactionForm()
+        TransactionsForm()
     }
     .modelContainer(modelContainer)
     .environment(TransactionsViewModel(modelContext: ModelContext(modelContainer)))

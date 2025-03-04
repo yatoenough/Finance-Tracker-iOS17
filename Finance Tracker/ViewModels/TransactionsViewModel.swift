@@ -5,14 +5,6 @@
 //  Created by Nikita Shyshkin on 01/03/2025.
 //
 
-
-//
-//  TransactionsViewModel.swift
-//  Finance Tracker
-//
-//  Created by Nikita Shyshkin on 05/02/2025.
-//
-
 import Foundation
 import SwiftData
 
