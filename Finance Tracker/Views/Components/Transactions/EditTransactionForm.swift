@@ -63,7 +63,7 @@ struct EditTransactionForm: View {
         .navigationTitle("Edit Transaction")
         .onAppear {
             title = transaction.title
-            amountString = String(format: "%.2f", transaction.amount)
+            amountString = String(format: "%.2f", abs(transaction.amount))
             date = transaction.date
             type = transaction.amount > 0 ? .income : .expense
         }

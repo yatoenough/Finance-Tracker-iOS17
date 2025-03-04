@@ -48,16 +48,27 @@ class TransactionsViewModel {
     }
     
     func editTransaction(_ id: UUID, _ editedTransaction: TransactionModel) {
-        guard let transactionToEdit = fetchTransactionById(id) else { return }
-        transactionToEdit.title = editedTransaction.title
-        transactionToEdit.amount = editedTransaction.amount
-        transactionToEdit.date = editedTransaction.date
+        do {
+            guard let transactionToEdit = fetchTransactionById(id) else { return }
+            transactionToEdit.title = editedTransaction.title
+            transactionToEdit.amount = editedTransaction.amount
+            transactionToEdit.date = editedTransaction.date
+            try modelContext.save()
+        } catch {
+            print(error.localizedDescription)
+        }
         
-        try? modelContext.save()
     }
     
     func deleteTransaction(_ id: UUID) {
-        guard let transactionToDelete = fetchTransactionById(id) else { return }
-        modelContext.delete(transactionToDelete)
+        do {
+            guard let transactionToDelete = fetchTransactionById(id) else { return }
+            modelContext.delete(transactionToDelete)
+            
+            try modelContext.save()
+        } catch {
+            print(error.localizedDescription)
+        }
+        
     }
 }

@@ -17,7 +17,9 @@ struct TransactionsScreen: View {
     
     var searchResults: [TransactionModel] {
         withAnimation {
-            searchText.isEmpty ? transactions : transactions.filter { $0.title.contains(searchText) }
+            searchText.isEmpty ? transactions : transactions.filter {
+                $0.title.localizedCaseInsensitiveContains(searchText)
+            }
         }
     }
     
@@ -32,12 +34,12 @@ struct TransactionsScreen: View {
                         } label: {
                             Label("Delete", systemImage: "trash")
                         }
-                        
+                    }
+                    .swipeActions(edge: .leading) {
                         NavigationLink(destination: EditTransactionForm(transaction: transaction)) {
                             Label("Edit", systemImage: "pencil")
                                 .tint(.orange)
                         }
-                        
                     }
             }
             .onDelete { offsets in
@@ -52,7 +54,6 @@ struct TransactionsScreen: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 NavigationLink(destination: AddTransactionForm()) {
-                    Text("Transaction")
                     Image(systemName: "plus")
                 }
             }
