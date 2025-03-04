@@ -55,7 +55,7 @@ struct TransactionsList: View {
     ]
     
     for transaction in transactions {
-        try! modelContainer.mainContext.insert(transaction)
+        modelContainer.mainContext.insert(transaction)
     }
     
     return NavigationStack {
