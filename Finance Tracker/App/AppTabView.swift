@@ -18,22 +18,18 @@ struct AppTabView: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            NavigationStack {
+            TabItem(tag: .overview) {
                 OverviewScreen()
-            }
-            .tag(AppTab.overview)
-            .tabItem {
+            } label: {
                 Label("Overview", image: "NavOverview")
             }
             
-            NavigationStack {
+            TabItem(tag: .transactions) {
                 TransactionsScreen()
-            }
-            .tag(AppTab.transactions)
-            .tabItem {
+            } label: {
                 Label("Transactions", image: "NavTransactions")
             }
-            
+
         }
     }
 }
@@ -41,9 +37,7 @@ struct AppTabView: View {
 #Preview {
     let modelContainer = try! ModelContainer(for: TransactionModel.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
     
-    NavigationStack {
-        AppTabView()
-    }
-    .modelContainer(modelContainer)
-    .environment(TransactionsViewModel(modelContext: ModelContext(modelContainer)))
+    AppTabView()
+        .modelContainer(modelContainer)
+        .environment(TransactionsViewModel(modelContext: ModelContext(modelContainer)))
 }
