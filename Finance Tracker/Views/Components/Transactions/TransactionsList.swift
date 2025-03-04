@@ -46,12 +46,10 @@ struct TransactionsList: View {
     }
 }
 
-#warning("Fix this preview")
-
-#Preview {
+#Preview(traits: .sizeThatFitsLayout) {
     DataPreview {
         NavigationStack {
-            TransactionsList(transactions: [])
+            TransactionsList(transactions: TransactionModel.demoTransactions)
         }
     }
 }

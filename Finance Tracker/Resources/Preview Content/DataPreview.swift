@@ -27,12 +27,8 @@ struct DataPreview<Content: View>: View {
     }
     
     private func preparePreviewData(container: ModelContainer) {
-        let transactions: [TransactionModel] = [
-            TransactionModel(title: "Test Transaction 1", amount: 100.0, date: Date()),
-            TransactionModel(title: "Test Transaction 2", amount: -50.0, date: Date(timeIntervalSinceNow: -60)),
-        ]
         
-        for transaction in transactions {
+        for transaction in TransactionModel.demoTransactions {
             container.mainContext.insert(transaction)
         }
     }
