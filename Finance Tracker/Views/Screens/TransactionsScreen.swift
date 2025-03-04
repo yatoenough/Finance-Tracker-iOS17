@@ -27,18 +27,23 @@ struct TransactionsScreen: View {
                 TransactionItem(transaction: transaction)
                     .transition(.opacity)
                     .swipeActions(edge: .trailing) {
-                        Button (role: .destructive){
+                        Button(role: .destructive) {
                             deleteTransaction(transaction)
                         } label: {
                             Label("Delete", systemImage: "trash")
                         }
                         
-                        Button {
-                            print("edit")
-                        } label: {
+                        NavigationLink(destination: EditTransactionForm(transaction: transaction)) {
                             Label("Edit", systemImage: "pencil")
+                                .tint(.orange)
                         }
+                        
                     }
+            }
+            .onDelete { offsets in
+                for offset in offsets {
+                    deleteTransaction(searchResults[offset])
+                }
             }
         }
         .listStyle(.plain)

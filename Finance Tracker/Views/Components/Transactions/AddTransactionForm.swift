@@ -8,11 +8,6 @@
 import SwiftUI
 import SwiftData
 
-enum TransactionType: String, CaseIterable {
-    case income
-    case expense
-}
-
 struct AddTransactionForm: View {
     
     @State private var title: String = ""
